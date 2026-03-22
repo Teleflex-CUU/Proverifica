@@ -1,0 +1,44 @@
+# 🏥 Gestión Integral de Salud en el Trabajo: Proverifica + Modelo Obrero Italiano
+
+Esta aplicación web es una herramienta digital diseñada para la implementación y seguimiento de dos metodologías críticas en la salud ocupacional moderna. El objetivo es centralizar la verificación normativa con la participación activa de los **trabajadores**.
+
+---
+
+## 🛠️ Metodologías Integradas
+
+### 1. Modelo Proverifica
+Enfocado en la **gestión técnica y administrativa**, este módulo permite:
+* **Listas de Verificación:** Evaluación sistemática de las condiciones de seguridad.
+* **Cumplimiento Normativo:** Seguimiento de estándares legales y auditorías internas.
+* **Evidencia Objetiva:** Registro de hallazgos con capacidad de generación de reportes.
+
+### 2. Modelo Obrero Italiano
+Basado en la **subjetividad obrera** y la participación directa, este módulo facilita:
+* **No Delegación:** Los **trabajadores** validan las condiciones de su propio entorno.
+* **Grupo Homogéneo:** Identificación de riesgos específicos por áreas con exposición similar.
+* **Validación de Riesgos:** Registro de percepciones sobre el ambiente físico y factores psicosociales.
+
+---
+
+## 🚀 Características Técnicas
+* **Frontend:** HTML5 y CSS3 (Tailwind CSS) para una interfaz responsiva y profesional.
+* **Interactividad:** JavaScript para la navegación entre módulos y gestión de datos en tiempo real.
+* **Despliegue:** Preparada para ser alojada en GitHub Pages para acceso remoto en planta.
+
+---
+
+## 📂 Estructura del Proyecto
+* `index.html`: Archivo principal con la lógica de la interfaz y estilos.
+* `README.md`: Documentación técnica y metodológica del proyecto.
+
+---
+
+## 📝 Instrucciones de Uso
+1.  **Clonar el repositorio:** `git clone https://github.com/tu-usuario/nombre-repositorio.git`
+2.  **Ejecución:** Abrir el archivo `index.html` en cualquier navegador moderno.
+3.  **Registro:** Utilizar el módulo del **Modelo Italiano** para recabar la percepción de los **trabajadores** y el módulo **Proverifica** para la inspección técnica.
+
+---
+
+**Desarrollado por:** Jaime Martínez Espinoza  
+*Especialista en Salud en el Trabajo e Informática Médica*
