@@ -3,99 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SST Teleflex CUU - Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>App PROVERIFICA - Verificación de Salud Laboral</title>
     <style>
-        body { background-color: #F3F4F6; color: #111827; font-family: sans-serif; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        /* Bordes de color para las tarjetas tipo Teleflex */
-        .card-border-blue { border-top: 4px solid #3B82F6; }
-        .card-border-green { border-top: 4px solid #10B981; }
-        .card-border-purple { border-top: 4px solid #8B5CF6; }
+        :root {
+            --cumple: #2ecc71;
+            --parcial: #f1c40f;
+            --nocumple: #e74c3c;
+            --na: #95a5a6;
+            --bg: #f4f7f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; background: #ecf0f1; padding: 10px; border-left: 5px solid #2980b9; }
+        h3 { color: #7f8c8d; font-size: 1.1em; margin-top: 20px; }
+        .pregunta-row { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-bottom: 1px solid #eee; transition: background 0.3s; }
+        .pregunta-row:hover { background: #f9f9f9; }
+        .texto-pregunta { flex: 1; padding-right: 20px; font-size: 0.95em; }
+        .options { display: flex; gap: 10px; }
+        .btn-check { cursor: pointer; padding: 8px 12px; border: 2px solid #ddd; border-radius: 5px; font-weight: bold; font-size: 0.8em; background: white; transition: all 0.2s; }
+        
+        /* Estados de color */
+        .btn-si.active { background-color: var(--cumple); color: white; border-color: #27ae60; }
+        .btn-pm.active { background-color: var(--parcial); color: white; border-color: #f39c12; }
+        .btn-no.active { background-color: var(--nocumple); color: white; border-color: #c0392b; }
+        .btn-na.active { background-color: var(--na); color: white; border-color: #7f8c8d; }
+
+        .resumen { margin-top: 40px; padding: 20px; background: #2c3e50; color: white; border-radius: 8px; text-align: center; }
+        #score { font-size: 2em; font-weight: bold; color: var(--cumple); }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <header class="bg-[#1E3A8A] text-white p-8 rounded-2xl mb-8 shadow-inner">
-        <div class="flex justify-between items-center mb-6">
-            <span class="bg-[#2563EB] text-xs font-bold px-3 py-1 rounded-full text-blue-100">MODULO SST INTANGIBLE</span>
-            <span class="text-sm opacity-80">Teleflex CUU / SST / Proverifica-Italiano</span>
-        </div>
-        <h1 class="text-3xl font-bold mb-3">Dashboard de Gestión de Salud en el Trabajo</h1>
-        <p class="text-blue-100 mb-8 max-w-2xl text-sm">Validación técnica (Proverifica) y participación directa de los <strong class="font-semibold text-white">trabajadores</strong> (Modelo Italiano) para un entorno seguro.</p>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/5 p-6 rounded-xl">
-            <div><span class="text-4xl font-bold">89%</span><span class="block text-xs uppercase opacity-80 mt-1">Cumplimiento Proverifica</span></div>
-            <div><span class="text-4xl font-bold">45</span><span class="block text-xs uppercase opacity-80 mt-1">Registros de Trabajadores (Italiano)</span></div>
-            <div><span class="text-4xl font-bold">3</span><span class="block text-xs uppercase opacity-80 mt-1">Áreas Críticas (Alto Riesgo)</span></div>
-            <div><span class="text-4xl font-bold text-green-300">ACTIVA</span><span class="block text-xs uppercase opacity-80 mt-1">ESTADO PLATAFORMA</span></div>
-        </div>
-    </header>
+<div class="container">
+    <h1>Modelo PROVERIFICA®</h1>
+    <p style="text-align: center; color: #666;">Cuestionario de Verificación (CV) Interactiva</p>
 
-    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <section class="lg:col-span-1 space-y-6">
-            <div class="bg-white p-6 rounded-xl shadow card-border-green">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-green-600 text-2xl font-bold">💡</span>
-                    <h2 class="text-xl font-semibold">Participación y Subjetividad (Modelo Italiano)</h2>
-                </div>
-                <p class="text-gray-600 text-sm mb-6">Registro directo de percepción de riesgos por <strong class="font-medium text-gray-900">trabajadores</strong> (No delegación).</p>
-                
-                <form class="space-y-4">
-                    <div><label class="block text-xs font-medium text-gray-500 mb-1">Área / Puesto (Grupo Homogéneo)</label>
-                         <input type="text" class="w-full border border-gray-200 rounded-lg p-3 text-sm" placeholder="Ej. Liofilización - Turno A"></div>
-                    <div><label class="block text-xs font-medium text-gray-500 mb-1">Categoría de Riesgo</label>
-                         <select class="w-full border border-gray-200 rounded-lg p-3 text-sm">
-                             <option>Condiciones Ambientales (Físico)</option>
-                             <option>Carga de Trabajo / Ergonómico</option>
-                             <option>Riesgo Psicosocial / Organización</option>
-                         </select></div>
-                    <button class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 text-sm">Registrar Percepción de Grupo</button>
-                </form>
-            </div>
-            
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="font-semibold text-gray-700 mb-3 text-sm">Recuento Reciente de Hallazgos</h3>
-                <div class="space-y-2 text-xs">
-                    <div class="flex justify-between p-2 bg-gray-50 rounded"><span>Ergonomía (Empaque)</span><span class="font-bold">12</span></div>
-                    <div class="flex justify-between p-2 bg-gray-50 rounded"><span>Ruido (Mantenimiento)</span><span class="font-bold text-orange-600">8</span></div>
-                </div>
-            </div>
-        </section>
+    <h2>I. Evaluación Preliminar de la Empresa</h2>
+    
+    <h3>1. Edificios, locales, instalaciones y áreas</h3>
+    <div id="seccion-1"></div>
 
-        <section class="lg:col-span-2 bg-white p-8 rounded-xl shadow card-border-blue space-y-8">
-            <div class="flex items-center gap-3">
-                <span class="text-blue-600 text-2xl font-bold">📋</span>
-                <h2 class="text-xl font-semibold">Validación de Cumplimiento (Proverifica)</h2>
-            </div>
-            
-            <div>
-                <h4 class="text-sm font-semibold text-gray-700 mb-3">Últimas Listas de Verificación Técnicas</h4>
-                <div class="overflow-x-auto text-sm border border-gray-100 rounded-lg">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 text-xs text-gray-500">
-                            <tr><th class="p-4">Criterio</th><th class="p-4">Estado</th><th class="p-4">Hallazgo</th><th class="p-4">Auditor</th></tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr><td class="p-4">CUMPLIMIENTO NOM-035</td><td class="p-4"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">CUMPLE</span></td><td class="p-4 text-gray-500">Correcta difusión de política</td><td class="p-4">J. Martínez</td></tr>
-                            <tr class="bg-gray-50/50"><td class="p-4">ERGONOMÍA (MANEJO DE CARGA)</td><td class="p-4"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">EN PROCESO</span></td><td class="p-4 text-gray-500">Rediseño estación empaque</td><td class="p-4">SO Médico</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <button class="mt-4 text-sm font-semibold text-blue-700 hover:text-blue-900">+ Ver Todas las Listas (SO Enfermería)</button>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-xl card-border-purple">
-                <div class="h-48 flex items-center justify-center border-4 border-dashed border-gray-200 rounded-lg">
-                    <span class="text-sm text-gray-400">📊 Gráfico: Cumplimiento Semanal (Proverifica)</span>
-                </div>
-                <div class="h-48 flex items-center justify-center border-4 border-dashed border-gray-200 rounded-lg">
-                    <span class="text-sm text-gray-400">📊 Gráfico: Origen de Riesgos (Modelo Italiano)</span>
-                </div>
-            </div>
-        </section>
-    </main>
+    <h3>2. Orden y limpieza</h3>
+    <div id="seccion-2"></div>
+
+    <h2>II. Intervención de los Niveles Directivos</h2>
+    
+    <h3>1. Políticas de salud en el trabajo</h3>
+    <div id="seccion-3"></div>
+
+    <div class="resumen">
+        <div>Índice de Eficacia General</div>
+        <div id="score">0%</div>
+        <p id="nivel-riesgo">Pendiente de evaluación</p>
+    </div>
+</div>
+
+<script>
+    const datosCuestionario = [
+        { seccion: "seccion-1", preguntas: [
+            "1.1. Los edificios, locales e instalaciones están en buenas condiciones.",
+            "1.2. Características acordes con la actividad realizada.",
+            "1.3. Pisos con superficies antideslizantes y libres de daños.",
+            "1.6. Rutas y salidas de emergencia marcadas y sin obstrucciones.",
+            "1.9. Escaleras y plataformas cuentan con protecciones."
+        ]},
+        { seccion: "seccion-2", preguntas: [
+            "2.1. Personal de intendencia dedicado exclusivamente al orden.",
+            "2.3. Instalaciones y puestos de trabajo ordenados y limpios.",
+            "2.4. Botes de basura especiales para residuos químicos/biológicos.",
+            "2.9. Sistema contra plagas instalado y funcionando."
+        ]},
+        { seccion: "seccion-3", preguntas: [
+            "1.1. Existe documento de políticas, filosofía y compromisos.",
+            "1.2. Documento firmado por el gerente o director general.",
+            "1.6. La política es del conocimiento de todo el personal."
+        ]}
+    ];
+
+    function generarApp() {
+        datosCuestionario.forEach(sec => {
+            const container = document.getElementById(sec.seccion);
+            sec.preguntas.forEach((txt, index) => {
+                const row = document.createElement('div');
+                row.className = 'pregunta-row';
+                row.innerHTML = `
+                    <div class="texto-pregunta">${txt}</div>
+                    <div class="options">
+                        <button class="btn-check btn-si" onclick="setVal(this, 1)">SÍ</button>
+                        <button class="btn-check btn-pm" onclick="setVal(this, 0.5)">PM</button>
+                        <button class="btn-check btn-no" onclick="setVal(this, 0)">NO</button>
+                        <button class="btn-check btn-na" onclick="setVal(this, null)">NA</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        });
+    }
+
+    function setVal(btn, val) {
+        const parent = btn.parentElement;
+        Array.from(parent.children).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        calcularResultados();
+    }
+
+    function calcularResultados() {
+        const botonesActivos = document.querySelectorAll('.btn-check.active');
+        let totalPuntos = 0;
+        let totalEvaluados = 0;
+
+        botonesActivos.forEach(btn => {
+            const text = btn.innerText;
+            if (text !== 'NA') {
+                totalEvaluados++;
+                if (text === 'SÍ') totalPuntos += 1;
+                if (text === 'PM') totalPuntos += 0.5;
+            }
+        });
+
+        const porcentaje = totalEvaluados > 0 ? Math.round((totalPuntos / totalEvaluados) * 100) : 0;
+        const scoreEl = document.getElementById('score');
+        scoreEl.innerText = porcentaje + '%';
+
+        const riesgoEl = document.getElementById('nivel-riesgo');
+        if (porcentaje >= 90) {
+            scoreEl.style.color = 'var(--cumple)';
+            riesgoEl.innerText = "Nivel de Riesgo: BAJO";
+        } else if (porcentaje >= 70) {
+            scoreEl.style.color = 'var(--parcial)';
+            riesgoEl.innerText = "Nivel de Riesgo: MEDIO";
+        } else {
+            scoreEl.style.color = 'var(--nocumple)';
+            riesgoEl.innerText = "Nivel de Riesgo: ALTO";
+        }
+    }
+
+    generarApp();
+</script>
+
 </body>
 </html>
